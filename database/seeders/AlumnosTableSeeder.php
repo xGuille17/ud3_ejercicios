@@ -13,7 +13,7 @@ class AlumnosTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('alumnos')->insert([
+        $data = [
             [
                 'nombre' => 'Juan Pérez',
                 'email' => 'juan.perez@example.com',
@@ -32,6 +32,19 @@ class AlumnosTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-        ]);
+        ];
+
+        // Loop through each record and insert it if not already present
+        foreach ($data as $alumno) {
+            DB::table('alumnos')->updateOrInsert(
+                ['email' => $alumno['email']], // check for existing email
+                [
+                    'nombre' => $alumno['nombre'],
+                    'email' => $alumno['email'],
+                    'created_at' => $alumno['created_at'],
+                    'updated_at' => $alumno['updated_at'],
+                ]
+            );
+        }
     }
 }
