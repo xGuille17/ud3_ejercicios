@@ -31,4 +31,67 @@ php artisan make:migration add_apellido_to_alumnos_table --table=alumnos
 Este comando generará un archivo en database/migrations
 Lo abrimos y lo editamos.
 
+
+## Way of Working
+
+Este apartado detalla los requisitos tecnológicos necesarios para trabajar en el proyecto y los pasos concretos para tener la aplicación lista para desarrollo.
+
+### Requisitos Tecnológicos
+
+1. **Herd**: Utilizado para la gestión de entornos de desarrollo.
+2. **Docker**: Para la contenedorización de la aplicación y sus servicios.
+3. **Postman**: Herramienta para probar y documentar las API.
+4. **PHP**: Versión 8.0 o superior (administrado por Herd).
+5. **Composer**: Para la gestión de dependencias de PHP.
+6. **Laravel**: Framework PHP utilizado en el proyecto.
+7. **Node.js y NPM**: Para la gestión de paquetes frontend y compilación de assets.
+8. **Git**: Para el control de versiones.
+
+### Pasos para Configurar el Entorno de Desarrollo
+
+1. **Clonar el repositorio**:
+    
+    git clone https://github.com/xGuille17/ud3_ejercicios
+    cd tu-repositorio
+    
+
+2. **Instalar dependencias de PHP**:
+
+    Asegúrate de tener Composer instalado dentro del contenedor Docker, luego ejecuta:
+
+    composer install
+    
+
+4. **Levantar los contenedores con Docker**:
+   
+    Asegúrate de tener Docker configurado y ejecuta:
+    
+    docker-compose up -d
+
+
+5. **Correr migraciones de la base de datos**:
+
+    Una vez que los contenedores estén en marcha, ejecuta las migraciones:
+    
+    docker-compose exec app php artisan migrate
+    
+
+6. **Instalar dependencias de Node.js**:
+    
+    Asegúrate de estar dentro del contenedor adecuado y ejecuta:
+    
+    npm install
+    
+
+7. **Compilar los assets frontend**:
+    
+    npm run dev
+    
+
+8. **Probar la API con Postman**:
+
+    Importa la colección de Postman disponible en el proyecto (si está disponible) para probar las diferentes rutas de la API.
+
+
+
  
